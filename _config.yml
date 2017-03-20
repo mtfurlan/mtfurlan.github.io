@@ -1,0 +1,12 @@
+name: Technically Competent
+url: http://technicallycompetent.com
+description: Stuff Mark Does
+
+permalink: /:year/:month/:day/:title/
+paginate: 10
+paginate_path: "blog/page:num"
+
+excerpt_separator: "<!--excerpt-->"
+
+gems: [jekyll-paginate]
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
