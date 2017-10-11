@@ -7,27 +7,27 @@ So I wanted the flip clock, and took pictures because the last flip clock we fou
 
 <!--excerpt-->
 
-<img src="/images/flipclockFront.jpg" class="img-middle">
+<img src="/images/flipclock/flipclockFront.jpg" class="img-middle">
 
 So this is the Lafayette 17-02372.
 
-<img src="/images/flipclockSchematic.jpg" class="img-left">
-<img src="/images/flipclockModel.jpg" class="img-right">
+<img src="/images/flipclock/flipclockSchematic.jpg" class="img-left">
+<img src="/images/flipclock/flipclockModel.jpg" class="img-right">
 
 Thought it was nice of them to put a circuit in, sorry the picture is a bit terrible. Amusing to me they list the number of components inside.
 
-<img src="/images/flipclock.jpg" class="img-middle">
+<img src="/images/flipclock/flipclock.jpg" class="img-middle">
 
-<img src="/images/flipclockGears.jpg" class="img-middle">
+<img src="/images/flipclock/flipclockGears.jpg" class="img-middle">
 
 So this part is cool, it’s the sleep function. I took a video of how it works, because I’m shit at description. TODO: Insert.
 
-<img src="/images/flipclockWires.jpg" class="img-middle">
+<img src="/images/flipclock/flipclockWires.jpg" class="img-middle">
 
 Now what the fuck is this bullshit, a wire is wrapped around the AC in, and goes into the circuit.
 
-<img src="/images/flipclockPully1.jpg" class="img-left">
-<img src="/images/flipclockPully2.jpg" class="img-right">
+<img src="/images/flipclock/flipclockPully1.jpg" class="img-left">
+<img src="/images/flipclock/flipclockPully2.jpg" class="img-right">
 
 It’s just rope and wheels! This should have been expected, but it’s cool.
 
