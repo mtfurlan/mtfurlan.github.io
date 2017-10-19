@@ -2,7 +2,7 @@ name: Technically Competent
 url: http://technicallycompetent.com
 description: Stuff Mark Does
 
-permalink: /:year/:month/:day/:title/
+permalink: /:title/
 paginate: 10
 paginate_path: "blog/page:num"
 
