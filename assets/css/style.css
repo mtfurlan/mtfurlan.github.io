@@ -58,6 +58,7 @@ sub { vertical-align: sub; font-size: 0.85em; }
 
 code {
     font: 0.85em Monaco, Courier, Monospace;
+    background-color: #073642;
 }
 
 blockquote {
