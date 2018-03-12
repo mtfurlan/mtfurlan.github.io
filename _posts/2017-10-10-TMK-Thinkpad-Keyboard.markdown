@@ -113,7 +113,7 @@ After the easy remapping fixes, there are a few larger remaining problems:
 - Even setting every no-op in the matrix, the alt keys do nothing.
 - Fn sends several key presses, even though the pinouts say fn should have it's own pin, pin 1 the same way power does.
 
-[The Code](https://github.com/mtfurlan/tmk_keyboard/tree/master/keyboard/t61)
+[The Code](https://github.com/mtfurlan/tmk_keyboard/tree/personalChanges/keyboard/t61)
 
 `make -f Makefile.lufa clean && make -f Makefile.lufa`
 
