@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "RF interferance on buttons"
+categories: hardware
+---
+
+We are seeing mysterious button presses on one of our iot lightswitches at i3.
+
+Herein lies the debugging so far.
+
+<!--excerpt-->
+So one set of identical buttons would be triggered by the welder, or by a set
+of fans turning off.
+
+I swapped the lightswitches, same thing happened, so we thought it was where
+the switches were plugged in.
+
+Put an osciliscope on the 5v line, and sure enough, there was some fluxuation
+when the fans turned off.
+
+So we put an APC line conditioner on.
+
+No change.
+
+Okay fine, 5V UPS because we have those lying around. It doesn't fully put the
+output on the battery though, so no change.
+
+Put like 10 ferrite beads on the 5v line.
+
+No change.
+
+It was moved to a pile of lead acid, off a nice power supply.
+
+No change.
+
+Finally I just put it on a battery, not powered at all.
+
+It still triggered.
+
+So it's RF magic!
+
+There is a suggestion to put stiffer pullups and caps across the buttons, we
+shall see how that works out.
