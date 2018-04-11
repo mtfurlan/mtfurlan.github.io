@@ -1,0 +1,26 @@
+---
+layout: default
+title: 404
+permalink: /404.html
+---
+
+<script type="text/javascript">
+//Modified from https://amreldib.com/blog/FixJekyllCaseSensitiveUrlsOnGitHubPages/
+var allposts = [];
+function redirectToCorrectPage() {
+	{% for post in site.posts %}
+		allposts.push("{{ post.url }}");
+	{% endfor %}
+	var url = window.location.pathname.toString();
+	var allpostsUpperCase = allposts.map(function(value) {
+		return value.toUpperCase();
+	});
+	var i = allpostsUpperCase.indexOf(url.toUpperCase());
+	if (i != -1) {
+		console.log(allposts[i]);
+		window.location = window.location.origin + allposts[i];
+	}
+}
+window.onload = redirectToCorrectPage;
+</script>
+404 page not found
