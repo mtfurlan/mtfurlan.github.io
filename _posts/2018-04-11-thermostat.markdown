@@ -51,5 +51,17 @@ They're not installed at i3 yet, but I'm testing one in my house.
 Has not yet burned down.
 
 At least, it hadn't when I left this morning.
-TODO: picture in house
+
+
+---
+UPDATE 2018-05-15:
+
+It was taken out of service a few weeks ago, once a flaw (possibly clear if you read closely) was discovered.
+
+If you put the heater on the normally closed contacts, they are normally closed.
+If the thermostat loses power, it turns the heat on.
+
+And this is the story of why I was trying to work in a house that was 31C.
+
+Board redesign in progress.
 
