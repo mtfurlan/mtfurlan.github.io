@@ -3,8 +3,8 @@ url: http://technicallycompetent.com
 description: Stuff Mark Does
 
 permalink: /:title/
-paginate: 10
-paginate_path: "blog/page:num"
+paginate: 30
+paginate_path: "page/:num"
 
 excerpt_separator: "<!--excerpt-->"
 

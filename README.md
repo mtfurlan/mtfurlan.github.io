@@ -8,5 +8,5 @@ To run local server, I have no idea how to install dependancies anymore but it w
 sudo apt-get install ruby-dev
 sudo gem install bundler
 bundle install
-bundle exec jekyll serve
+bundle exec jekyll serve --livereload
 ```
