@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lora Gateway Research"
-categories: lora
+categories: lora, mbed, notes
 ---
 
 Trying to get to a lorawan gateway.
