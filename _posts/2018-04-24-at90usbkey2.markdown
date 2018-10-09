@@ -44,3 +44,5 @@ for which pins are already used by onboard stuff, and how to undo the onboard st
 
 To make the TMK onekey example work, you really just need to change `MCU` to `at90usb1287`.
 That's it, it works.
+
+EDIT: Clock speed is `8000000`, that one is important too.
