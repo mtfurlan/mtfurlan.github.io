@@ -4,8 +4,9 @@ title:  "KiCad Art"
 categories: kicad
 ---
 
-Putting logos on a kicad board is hard.
+Putting logos on a kicad board isn't terribly hard, just slightly annoying.
 
+<a href="/images/kicad-art/closeup.jpg"><img src="/images/kicad-art/closeup.jpg" alt="some boards with art"></a>
 
 <!--excerpt-->
 
@@ -34,3 +35,6 @@ Summary
 * Shouldn't have to completely restart kicad when updating the footprint, just open and close library manager.
 
 <a href="/images/kicad-art/board-art.jpg"><img src="/images/kicad-art/board-art.jpg" alt="some boards with art"></a>
+
+--
+Update 2018-11-12: Add header image
