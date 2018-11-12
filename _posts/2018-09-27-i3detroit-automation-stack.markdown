@@ -45,7 +45,9 @@ All our lights without ground level buttons have their switches/breakers preserv
 This means that if there is no wifi at all, the relay gets power and then immediately turns the light on so it works seamlessly as if the relays were not there.
 The lightswitches for the office area we replaced with sonoff touches, because they either only controlled one light or control built-in lights (behind drywall for example), and they do not turn on when power is restored.
 
-TODO: picture of sonoff touch
+<a href="/images/i3detroit-automation-stack/sonoff-touch.jpg"><img src="/images/i3detroit-automation-stack/sonoff-touch.jpg" alt="sonoff touch"></a>
+We don't love the touch interface with no actual button, but haven't changed it yet.
+I have a plan though.
 
 Other considerations:
 - The S in IoT stands for Security.
@@ -76,7 +78,7 @@ Sequestering the IoT like this not only makes it easier to have a relatively sen
 
 
 Most of our devices are [iTead](https://www.itead.cc/) products, such as the 4.85USD [sonoff basic](https://www.itead.cc/smart-home/sonoff-wifi-wireless-switch.html) running the open source [Tasmota](https://github.com/arendst/Sonoff-Tasmota/wiki) firmware.
-<img src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Maiyang/2018/01/19/goods-img/1516330084294634377.jpg" class="img-middle">
+<a href="/images/i3detroit-automation-stack/sonoff-basic.jpg"><img src="/images/i3detroit-automation-stack/sonoff-basic.jpg" alt="sonoff basic"></a>
 We cannot beat that price.
 
 We also have a bunch of [custom](https://github.com/i3detroit/custom-mqtt-programs) programs:
@@ -219,3 +221,8 @@ mqtt:
 ```
 
 Running!
+
+
+
+---
+UPDATE 2018-11-12: Added picture of sonoff touch and moved the non-local picture of a sonoff basic to local
