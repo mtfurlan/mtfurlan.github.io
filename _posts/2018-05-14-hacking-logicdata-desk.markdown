@@ -63,3 +63,11 @@ Ran into the issue of using a 3.3v microcontroller with 5V logic; I apparently c
 I'm hopeful that a level shifter will fix that.
 
 [https://github.com/mtfurlan/RoboDesk](https://github.com/mtfurlan/RoboDesk)
+
+---
+UPDATE 2019-03-15:
+
+On 2018-11-14 I printed a case for it, and mounted it to my desk.
+
+<img src="/images/hacking-logicdata-desk/open-case.jpg" alt="the logicdata controller in a case">
+<img src="/images/hacking-logicdata-desk/case.jpg" alt="the logicdata controller mounted to the desk">
