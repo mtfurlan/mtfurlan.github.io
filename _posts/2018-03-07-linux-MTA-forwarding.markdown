@@ -11,14 +11,10 @@ Sadly, they often get sent to `root@127.0.0.1`, where they don't get read becaus
 [nullmailer](https://untroubled.org/nullmailer/) to the rescue.
 
 <!--excerpt-->
-So far this has only been tested on 14.04.5 LTS, Trusty Tahr which hits EOL next year.
-I don't like ubuntu I don't see why they need their own init system.
-I just learned systemd why do I have do do this all over again.
+```
+sudo apt-get install nullmailer mailutils
+```
 
-Anyway.
-
-
-Install nullmailer, I used whatever was in the repos.
 
 In `/etc/nullmailer/remotes` put
 ```
@@ -33,6 +29,8 @@ echo "error" | NULLMAILER_NAME="Some Service" mail -s "issue with service" "your
 ```
 `NULLMAILER_NAME` is optional, but will set from name instead of just being from yourSendingEmail@domain.tld
 
+
+## smartd configuration
 That can also be used in cronjobs, or other reporting.
 
 In `/etc/smartd.conf`, we set stuff to hopefully check `/dev/sda` for issues and report them.
@@ -47,4 +45,27 @@ I never figured out how to set the env var `NULLMAILER_NAME`, so the from is jus
 
 And then finally in `/etc/default/smartmontools` uncomment `start_smartd=yes` to autostart because that's how you do it I guess?
 
-I'll update this when I get my hands on a drive that fails smart and I can prove it works.
+## tmpfs
+
+There is an issue with this if the hard drive fails and gets mounted read only, you don't get any email from smartd about how the hard drive has issues.
+
+https://serverfault.com/questions/961168/sending-email-with-read-only-root-drive-by-using-a-tmpfs-for-var-spool-nullmail
+
+fstab:
+```
+tmpfs /var/spool/nullmailer tmpfs nodev,nosuid,noexec,nodiratime,size=5M   0 0
+```
+Somehow run this before nullmailer daemon:
+```
+sudo mkdir /var/spool/nullmailer/tmp
+sudo mkdir /var/spool/nullmailer/queue
+sudo chown -R mail:root /var/spool/nullmailer/
+sudo chmod 755 /var/spool/nullmailer/
+sudo chmod 750 /var/spool/nullmailer/queue/
+sudo chmod 750 /var/spool/nullmailer/tmp/
+```
+
+Now it's in a tmpfs!
+
+
+This was updated 2019-04-02 when I added the tmpfs stuff and rewrote parts.
