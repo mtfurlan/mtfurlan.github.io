@@ -6,35 +6,27 @@ categories: kicad
 
 Putting logos on a kicad board isn't terribly hard, just slightly annoying.
 
-<a href="/images/kicad-art/closeup.jpg"><img src="/images/kicad-art/closeup.jpg" alt="some boards with art"></a>
+<img src="/images/kicad-art/closeup.jpg" alt="some boards with art">
 
 <!--excerpt-->
 
-Instructions for old kicad from [komar's techblog](http://blog.komar.be/making-pcb-artwork-in-kicad/)
-Useful except that they used the old file format, so I just took the approach and used svg2mod instead.
+Approach for copper/mask taken from [komar's techblog](http://blog.komar.be/making-pcb-artwork-in-kicad/), but I couldn't get the tooling to work.
 
-[svg2mod](https://github.com/mtl/svg2mod) turns an svg into a `.kicad_mod` file.
+[svg2mod fork for python3 support](https://github.com/zirafa/svg2mod) turns an svg into a `.kicad_mod` file.
 
-Edit svg2mod.py so we can run it, also fix the shebang line or just call it with python2
-
-{% highlight diff %}
--import svg2mod.svg as svg
-+import svg
-{% endhighlight %}
-
+* `pip3 install git+https://github.com/zirafa/svg2mod`
 
 Summary
-* take image you want, as vector. In inkscape, have two layers with the thing on it. `Cu` and `Mask`.
-* With mask, do this [path offset](https://community.glowforge.com/t/inkscape-tutorial-for-creating-an-offset-path/2893) thing a few times
-* now the mask is slightly bigger
-* save svg.
-* `python2 svg2mod/svg2mod.py -i i3logoCombined.svg -o i3logoCombined`
+* Vector image in inkscape.
+* Layers `Cu` and `Mask`, and any others listed by svg2mod
+* Make the mask a bit bigger than the cu, `Path->Outset` worked for me this time around.
+* Set units to mm, resize to proper size. It will translate properly.
+* `python2 svg2mod/svg2mod.py -i input.svg -o output --name name -p 1`
 * put `i3logoCombined.kicad_mod` into your pcbnew library list thing, import footprint
-* It's the wrong size.
-* Resize it in inkscape, set units to mm, it will translate properly.
 * Shouldn't have to completely restart kicad when updating the footprint, just open and close library manager.
 
 <a href="/images/kicad-art/board-art.jpg"><img src="/images/kicad-art/board-art.jpg" alt="some boards with art"></a>
 
---
-Update 2018-11-12: Add header image
+---
+* Update 2018-11-12: Add header image
+* Update 2019-07-12: Redo instructions
