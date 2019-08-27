@@ -67,5 +67,57 @@ sudo chmod 750 /var/spool/nullmailer/tmp/
 
 Now it's in a tmpfs!
 
+Full script:
 
+```
+#!/bin/bash
+set -x
+
+if [[ $EUID != 0 ]] ; then
+  echo This must be run as root!
+  exit 1
+fi
+
+tee /etc/systemd/system/nullmailer-mount.service >/dev/null <<EOF
+[Unit]
+Description=Mount tempfs in /var/spool/nullmailer/
+
+[Service]
+Type=oneshot
+ExecStart=mkdir /var/spool/nullmailer/tmp
+ExecStart=mkdir /var/spool/nullmailer/queue
+ExecStart=chown -R mail:root /var/spool/nullmailer/
+ExecStart=chmod 755 /var/spool/nullmailer/
+ExecStart=chmod 750 /var/spool/nullmailer/queue/
+ExecStart=chmod 750 /var/spool/nullmailer/tmp/
+
+[Install]
+WantedBy=nullmailer.service
+EOF
+
+if ! grep nullmailer /etc/fstab>/dev/null ; then
+  sudo tee -a /etc/fstab >/dev/null <<FSTAB
+
+  tmpfs /var/spool/nullmailer tmpfs nodev,nosuid,noexec,nodiratime,size=5M   0 0
+FSTAB
+fi
+
+mkdir /var/spool/nullmailer
+mount -a
+
+
+apt-get install nullmailer mailutils -y
+systemctl enable nullmailer-mount.service
+
+tee /etc/nullmailer/remotes >/dev/null <<EOF
+74.125.206.108 smtp --port=465 --auth-login --ssl --user=yourSendingEmail@domain.tld --pass=iWonderIfQuotesWorkForSpaces --insecure
+EOF
+
+systemctl restart nullmailer
+
+echo "testing" | NULLMAILER_NAME="Nullmailer Setup Script" mail -s "test email" "email@domain.tld"
+```
+
+---
 This was updated 2019-04-02 when I added the tmpfs stuff and rewrote parts.
+This was updated 2019-07-24 with setup script.
