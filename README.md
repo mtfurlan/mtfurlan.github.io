@@ -10,8 +10,3 @@ sudo gem install bundler
 bundle install
 bundle exec jekyll serve --livereload
 ```
-Notes from mephala maybe
-```
-sudo apt-get install jekyll -y
-jekyll serve --watch
-```

@@ -8,5 +8,5 @@ paginate_path: "page/:num"
 
 excerpt_separator: "<!--excerpt-->"
 
-plugins: [jekyll-paginate]
+gems: [jekyll-paginate]
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile', '.git']
