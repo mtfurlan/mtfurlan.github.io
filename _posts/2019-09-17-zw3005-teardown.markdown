@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "zw3005 honeywell z-wave lightswitch teardown"
+categories: teardown
+---
+
+Some friends use the TP link kasa lightswitches.
+I intended to buy one to evaluate, but got confused by someone else talking about what they use(z-wave) while I tried to order it.
+
+I don't use zwave, so I decided to see what would be involved with converting it to be ESP based.
+
+TL;DR: Maybe possible to convert, but way too much effort.
+<!--excerpt-->
+
+I'm just posting what I know because I couldn't find any pictures of the inside online.
+
+It has the [SD3502](http://www.keil.com/dd/docs/datashts/sigmadesigns/sd3502_bro.pdf) Z-Wave SoC as the brain, and uses a BTA24-600BW triac as the switch.
+
+After you take out all the obvious screws, you find this rivet.
+<img src="/images/zw3005/rivet.jpg" alt="the rivet holding it together">
+I drilled it out
+<img src="/images/zw3005/no-rivet.jpg" alt="no rivet">
+
+Pry the clips in the square slots out to remove the PCB.
+
+Turns out the rivet was actually connecting the triac to the metal plate, so the metal plate was also a heatsink.
+<img src="/images/zw3005/board.jpg" alt="good luck getting this back together David, sorry.">
+Also debug pins!
+
+It's a clever dual-layer set of boards.
+<img src="/images/zw3005/side.jpg" alt="side view">
+
+Overall, as it has the triac on the upper board, I'm not going to even try to bodge an ESP in.
+
+I'm going to try to hand this off to someone who uses these, but as the rivet heatsink is now missing, I doubt it will work.
+So if anyone wants the thing, let me know and I'll try to get it to you.
