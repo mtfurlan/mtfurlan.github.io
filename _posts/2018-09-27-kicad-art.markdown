@@ -21,7 +21,7 @@ Summary
 * Layers `Cu` and `Mask`, and any others listed by svg2mod
 * Make the mask a bit bigger than the cu, `Path->Outset` worked for me this time around.
 * Set units to mm, resize to proper size. It will translate properly.
-* `python2 svg2mod/svg2mod.py -i input.svg -o output --name name -p 1`
+* `svg2mod -i input.svg -o output --name name -p 1`
 * put `i3logoCombined.kicad_mod` into your pcbnew library list thing, import footprint
 * Shouldn't have to completely restart kicad when updating the footprint, just open and close library manager.
 
