@@ -18,15 +18,21 @@ Approach for copper/mask taken from [komar's techblog](http://blog.komar.be/maki
 
 Summary
 * Vector image in inkscape.
-* Layers `Cu` and `Mask`, and any others listed by svg2mod
-* Make the mask a bit bigger than the cu, `Path->Outset` worked for me this time around.
-* Set units to mm, resize to proper size. It will translate properly.
-* `svg2mod -i input.svg -o output --name name -p 1`
-* put `i3logoCombined.kicad_mod` into your pcbnew library list thing, import footprint
-* Shouldn't have to completely restart kicad when updating the footprint, just open and close library manager.
+* Make it a path, where the fill actually fills it
+* Resize to the final size (with a few mm spacing)
+  * Object -> Transform
+* Name layer `Cu`
+* Duplicate layer, name `Mask`
+* Make mask slightly bigger
+  * Path -> Outset works
+    * Step size in Preferences -> Behaviour -> Steps -> Inset/Outset by
+* Path -> Break Apart
+* Edit -> Resize Page to Selection
+* `svg2mod -i input.svg -o output-filename --name module-name -p 1`
 
 <a href="/images/kicad-art/board-art.jpg"><img src="/images/kicad-art/board-art.jpg" alt="some boards with art"></a>
 
 ---
 * Update 2018-11-12: Add header image
 * Update 2019-07-12: Redo instructions
+* Update 2020-10-14: Add specifics
