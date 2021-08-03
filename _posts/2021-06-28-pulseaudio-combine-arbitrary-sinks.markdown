@@ -30,7 +30,7 @@ set-default-sink combined
 ```
 
 ----
-Make sure that if you have to do stuff like setup which HDMI output you use for stuff like a VR hat that is done first.
+Make sure that if you have to do stuff like setup which HDMI output you use for stuff like a VR hat that that is done first.
 
 Get card Name and Active Profile from
 `pactl list cards`
