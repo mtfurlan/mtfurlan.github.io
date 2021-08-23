@@ -22,6 +22,7 @@ By actually reading the docs, I figured out that the `module-combine-sink` can t
 So what I have is
 1. `cp /etc/pulse/default.pa ~/.config/pulse`
 2. list sinks with `pactl list short sinks`
+   * `pactl list short sinks | grep -v "SteelSeries.*mono" | awk '{ print $2}' | sed -z 's/\n/,/g;s/.$/\n/'`
 2. try `pactl load-module module-combine-sink sink_name=combined slaves=$sink_list sink_properties=device.description=whatever`
 3. Once that works, put it in `~/.config/pulse`, restart pulseaudio.
 ```
