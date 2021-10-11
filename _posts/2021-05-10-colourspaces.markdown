@@ -12,13 +12,13 @@ All I wanted was a nice colour sweep...
 
 ## High level introduction
 
-This was made in with help from with one of the worlds foremost colour science
-experts, all errors are mine.
-
-Probable best case, case, your screen is displaying the triangle:
+Your eye can see all these colours.
+Probable best case, case, your screen can display the inside triangle:
 ![CIEXYZ\_sRGB](https://upload.wikimedia.org/wikipedia/commons/a/a8/CIExy1931_sRGB.png){:height="500px"}
 The stuff outside the triangle is the CIE 1931 XYZ colour space gamut.
 The triangle is the sRGB gamut map.
+
+Code: [github.com/mtfurlan/colourspace-fader](https://github.com/mtfurlan/colourspace-fader)
 
 
 Definitions:
@@ -61,7 +61,7 @@ Relevant colour spaces to what I did
   * (the capitalization and spacing for the CIE stuff changes, the only thing to
     do is not call CIELAB "Lab" to avoid confusion with Hunters Lab)
 * CIELAB
-  * Cartesian spherical colour space
+  * Cartesian cylendrical colour space
   * CIELAB is a later standard built on top of CIEXYZ to better represent human
     perception, so theoretically sets of points of an equivalent Euclidean
     distance apart are perceived to be just as far apart.
@@ -105,9 +105,10 @@ same.
 The issue is how you can see how the different colours appear to be different
 sizes there.
 
-Also, fun fact, this looks *way* better on your computer monitor than it would
-on an LED, because your graphics card and your screen both have gamma
-corrections to account for what they can display.
+Also, fun fact, in spite of stuff like the real brief yellow, cyan, or magenta,
+this looks a bit better on your computer monitor than it would on an LED,
+because your graphics card and your screen both have gamma corrections to
+account for what they can display.
 
 ### Better Approach
 If we use
@@ -115,6 +116,8 @@ If we use
 to calculate our steps, then every step should actually look the same amount of
 different.
 
+This is ignoring the nonlinearity of output LEDs for now, my plan is to
+characterize and adjust later.
 
 #### Approach 1
 In CIELCHab, with a static L and C, iterate over h.
@@ -124,60 +127,34 @@ In CIELCHab, with a static L and C, iterate over h.
 * store last CIELCH
 * output
 
-![attempt 1 static luminosity and chroma](/images/colourspaces/attempt1.png){:height="500px"}
+![attempt 1 static luminosity and chroma](/images/colourspaces/CIELCh 1ΔE L=50 C=100.png){:height="500px"}
 Turns out static L and C means you cannot get the full range of outputs, look
 at how we just don't have much green.
 Could get this a bit better by playing with the parameters, but eh.
+![attempt 1.5 static luminosity and chroma](/images/colourspaces/CIELCh 1ΔE L=70 C=100.png){:height="500px"}
 
 #### Approach 2
 Do a basic HSL sweep, but make sure each step is big enough with ΔE\*.
-![attempt 2 static luminosity and chroma](/images/colourspaces/attempt2.png){:height="500px"}
+![attempt 2 static luminosity and chroma](/images/colourspaces/HSL 3ΔE L=1 C=.5.png){:height="500px"}
+![attempt 2 static luminosity and chroma](/images/colourspaces/HSL 6ΔE L=1 C=.5.png){:height="500px"}
 
-This doesn't adjust for perceptural brightness differences, but I would need to
-characterize the LEDs to do that I think.
+You can see the focus on red, green, and blue here because this isn't a very
+good starting place.
+
+## Approach 3
+Do a CIELCH sweep again but add something that takes a target lumens parameter and moves to the closest place that fits
+
+TODO:
+* Fix plots: https://stackoverflow.com/questions/69532730/gnuplot-plotting-colours
+* try to coerce stuff into the same lumen output
+* Get trustable lux sensor, characterize LEDs, write stuff to turn RGB output into lumens
 
 ### Neat asides along the way
 Used platformio test framework to run a lot of my tests.
 This is how I plotted the output of RGB automatically every time a file changed
 ```
-inotifywait -r -e create --exclude "\.git" -m . -q | grep --line-buffered -E "\.c$|\.h$|\.sh$|\.gnu$" | grep --line-buffered -v "tmp_pio_test_transport.c" | while read -r directory events filename; do echo "file changed: $directory/$filename"; make test | grep -P "\d+\.\d+, *\d+, *\d+, *\d+" > rgb.csv && ./plot.gnu; echo "done"; done
+mkdir -p plotData; inotifywait -r -e create --exclude "\.git" -m . -q | grep --line-buffered -E "\.c$|\.h$|\.sh$|\.gnu$" | grep --line-buffered -v "tmp_pio_test_transport.c" | while read -r directory events filename; do echo "file changed: $directory/$filename"; make test | grep -P "PLOTTITLE.*|PLOTDATA" > plotData/output && head -n1 plotData/output | sed 's/PLOTTITLE: //' > plotData/title && tail -n+2 plotData/output | sed 's/PLOTDATA: //' | sort -n -s -k 1,1 > plotData/rgb.csv && ./plot.gnu; echo "done"; done
 ```
+Watch the current directory for file changes, if it does run make test, filter the output and put it in plotData/output, split that into plotdata/title and plotdata/rgb.csv and then run plot.gnu to make a fancy plot.
 
-`plot.gnu`:
-```
-#!/usr/bin/env gnuplot
-
-# For some reason if I output to png it will interpolate the colour box.
-# So instead of saving to SVG I just exported to png manually
-#set term svg
-#set output "plot.svg"
-
-set multiplot layout 2, 1 title "Attempt 1 CIELch sweep with min .001 ΔE" font ",14"
-
-set lmargin at screen 0.05
-
-plot "rgb.csv" using 2 title 'red' with lines linecolor "red", \
-     "rgb.csv" using 3 title 'green' with lines linecolor "green", \
-     "rgb.csv" using 4 title 'blue' with lines linecolor "blue"
-
-set style function pm3d
-set view map scale 1
-set format cb "%3.1f"
-
-unset colorbox
-
-set palette file 'rgb.csv' using (($2/255)):(($3/255)):(($4)/255)
-set palette maxcolors system("wc -l rgb.csv")
-
-unset key
-unset ytics
-unset xtics
-
-
-g(x)=x
-splot g(x)
-
-unset multiplot
-
-pause mouse close
-```
+[github mtfurlan/colourspace-fader plot.gnu](https://github.com/mtfurlan/colourspace-fader/blob/main/plot.gnu)
