@@ -80,12 +80,14 @@ fi
 
 tee /etc/systemd/system/nullmailer-mount.service >/dev/null <<EOF
 [Unit]
-Description=Mount tempfs in /var/spool/nullmailer/
+Description=populate /var/spool/nullmailer/
+Before=nullmailer.service
 
 [Service]
 Type=oneshot
-ExecStart=mkdir /var/spool/nullmailer/tmp
-ExecStart=mkdir /var/spool/nullmailer/queue
+ExecStart=systemd-tmpfiles --create nullmailer.conf
+ExecStart=mkdir -p /var/spool/nullmailer/tmp
+ExecStart=mkdir -p /var/spool/nullmailer/queue
 ExecStart=chown -R mail:root /var/spool/nullmailer/
 ExecStart=chmod 755 /var/spool/nullmailer/
 ExecStart=chmod 750 /var/spool/nullmailer/queue/
@@ -121,3 +123,4 @@ echo "testing" | NULLMAILER_NAME="Nullmailer Setup Script" mail -s "test email" 
 ---
 This was updated 2019-04-02 when I added the tmpfs stuff and rewrote parts.
 This was updated 2019-07-24 with setup script.
+This was updated 2021-10-27 with a better nullmailer-mount unit
