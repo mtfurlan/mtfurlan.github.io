@@ -117,10 +117,11 @@ EOF
 
 systemctl restart nullmailer
 
-echo "testing" | NULLMAILER_NAME="Nullmailer Setup Script" mail -s "test email" "email@domain.tld"
+echo "testing on $HOSTNAME on $(date --iso=seconds)" | NULLMAILER_NAME="Nullmailer Setup Script on $HOSTNAME" mail -s "test email" "yourEmail@domain.tld"
 ```
 
 ---
-This was updated 2019-04-02 when I added the tmpfs stuff and rewrote parts.
-This was updated 2019-07-24 with setup script.
-This was updated 2021-10-27 with a better nullmailer-mount unit
+* This was updated 2019-04-02 when I added the tmpfs stuff and rewrote parts.
+* This was updated 2019-07-24 with setup script.
+* This was updated 2021-10-27 with a better nullmailer-mount unit
+* 2021-10-28 better mail test
