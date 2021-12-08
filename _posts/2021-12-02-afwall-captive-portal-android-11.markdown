@@ -43,3 +43,13 @@ like my phone to allow me access to a network I told it to connect to regardless
 of what it thinks about google being accessable.
 
 But whatever, at least it gives me internet now.
+
+
+---
+UPDATE 2021-12-08: it didn't quite work all the time.
+It's now working and this is now the list of things I think are relevant:
+
+* 1000 Filter Provider, bunch of other stuff
+* 10177 CaptivePortalLogin
+* 5023 NetworkDiagnostic
+* 10255 Setup Wizard (shows up in a search for 2559, but displays as 10255 now?)
