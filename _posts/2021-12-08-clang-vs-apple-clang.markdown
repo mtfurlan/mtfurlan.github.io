@@ -4,7 +4,7 @@ title:  "Warning Flags in Clang vs Apple Clang"
 categories: clang, apple
 ---
 
-I found out that clang 13 supports `-Wreserved-identifier`, while clang claiming to be 13 on a coworkers mac does not.
+I found out that clang 13 [clang 13.0.0 supports `-Wreserved-identifier`](https://releases.llvm.org/13.0.0/tools/clang/docs/DiagnosticsReference.html#wreserved-identifier), while clang claiming to be 13 on a coworkers mac does not.
 
 According to a [clang contributor](https://www.reddit.com/r/cpp_questions/comments/moirt4/comment/gu43re0) apple clang is "quirky".
 
@@ -31,9 +31,9 @@ $listDownloads.action_copy_as_curl_thing | jq '.downloads[] | select(.name|test(
 
 
 ## Methodology:
-* Take list of diagnostic flags from [clang 13.0.0](https://releases.llvm.org/13.0.0/tools/clang/docs/DiagnosticsReference.html#w-pragma-messages)
-* Test each flag individually in clang 9..12 and apple clang whatever I can get my hands on
-* Document where each flag was added
+* Take list of diagnostic flags expected in each version of clang
+* Run each one on apple clang
+* document difference
 
 ### Getting Apple Clang
 Download Command Line Tools for Xcode X.Y from
@@ -52,6 +52,12 @@ A coworker has 13.0 on a mac
 someone put it in [docker](https://hub.docker.com/r/silkeh/clang)
 
 ### Testing approach
-Write a sample program and compile it with every warning flag and `-Wunknown-argument` and see where it knows every warning.
+Write a sample program and compile it with `"$warning" -Werror -Wunknown-argument` and see where it knows every warning.
+`-Wframe-larger-than=` removed because it just overrides a default value that
+`-Wframe-larger-than` has, and if we have that then I think it's fine
+
+```
+comm -3 --check-order <(sed 's/^#.*//; s/ #.*//' compiler-warnings/clang/warnings-11.txt^C sort | uniq) <(sort data/clang-11)
+```
 
 
