@@ -13,7 +13,7 @@ date=$(date +%Y-%m-%d)
 file="$date-$1.markdown"
 
 
-echo "creating '$file'"
+echo "creating '_posts/$file'"
 if [ -f $file ]; then
     echo "file already exists"
     exit 1
