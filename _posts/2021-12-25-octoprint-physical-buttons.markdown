@@ -28,11 +28,11 @@ pi GPIO:
 * gpio 22: red power switch led (pi turning off)
 
 * gpio 4: printer power relay
+  * This is after the switch on the UM2, I cut the trace on the bottom after SW1 and put the relay between SW1 and J14+
 * gpio 24: 3V3 from printer to sense if relay is on
   * ultimaker 2 control board TP37(3V3) TP39(GND)
 * gpio 18: toggle relay button
   * octoprint physical button addon + curl + psu control addon
-* gpio 17: sense um2 power status for psu control
 
 octoprint setup:
 * PSU control plugin
