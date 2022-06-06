@@ -71,7 +71,7 @@ Full script:
 
 ```
 #!/bin/bash
-set -x
+set -xeu
 
 if [[ $EUID != 0 ]] ; then
   echo This must be run as root!
@@ -104,7 +104,7 @@ if ! grep nullmailer /etc/fstab>/dev/null ; then
 FSTAB
 fi
 
-mkdir /var/spool/nullmailer
+mkdir -p /var/spool/nullmailer
 mount -a
 
 
@@ -125,3 +125,4 @@ echo "testing on $HOSTNAME on $(date --iso=seconds)" | NULLMAILER_NAME="Nullmail
 * This was updated 2019-07-24 with setup script.
 * This was updated 2021-10-27 with a better nullmailer-mount unit
 * 2021-10-28 better mail test
+* 2022-06-06 error checking in script
