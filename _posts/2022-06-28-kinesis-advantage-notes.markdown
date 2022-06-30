@@ -29,6 +29,22 @@ Thanks to [Mihail H. on electronics.stackexchange](https://electronics.stackexch
 On the first of the three cables I bought the cable broke out the two D+/D- pairs so I initially had a USBC connector that only worked one way, very cursed.
 The other two seem to not do this.
 
+<a href="/images/kinesis-advantage-notes/connector.jpg"><img src="/images/kinesis-advantage-notes/connector.jpg" title="final outside"></a>
+Cable pinout of JST XH
+1. 6P4C pin 4 (green)
+2. 6P4C pin 2 (black)
+3. USB 5V
+4. USB D+
+5. USB D-
+6. USB GND / 6P4C pin 3 (red)
+7. 6P4C pin 5 (yellow)
+
+
+It's weird that 3(red) is connected to USB ground when both [kilontsov](https://gist.github.com/kolontsov/c5150fb253cf61c9c6865d12be4d02c8) and [Kevin P Schoedel](http://www.kw.igs.net/~schoedel/kinesis/) say 4 (green) is common.
+
+I don't use foot pedals right now so I'm ignoring it. (and would use a new panel mount connector anyway)
+
+Final outside:
 <a href="/images/kinesis-advantage-notes/final_outside.jpg"><img src="/images/kinesis-advantage-notes/final_outside.jpg" title="final outside"></a>
 
 
