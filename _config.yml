@@ -10,3 +10,6 @@ excerpt_separator: "<!--excerpt-->"
 
 plugins: [jekyll-paginate]
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile', '.git']
+
+kramdown:
+  smart_quotes: ["apos", "apos", "quot", "quot"]
