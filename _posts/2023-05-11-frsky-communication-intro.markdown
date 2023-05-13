@@ -70,8 +70,8 @@ Firmware on the receiver and transmitter for talking to each other
 * SPort: [jcheger/arduino-frskysp](https://github.com/jcheger/arduino-frskysp)
 * SBUS: [bolderflight/sbus](https://github.com/bolderflight/sbus)
 
-The SPort library wanted to use `SoftwareSerial` and just talk and receive on the
-same pin, which didn't work too good on the esp32 so I forked it to use
+The SPort library wanted to use `SoftwareSerial` and just talk and receive on
+the same pin, which didn't work too good on the esp32 so I forked it to use
 `HardwareSerial` and to swap which pins are which at the right times.
 
 I had to put a 1ms delay before sending a packet, because `HardwareSerial`
@@ -80,3 +80,8 @@ I don't love that, and would like to see it go away or at least get reduced.
 
 ## In the end, basic kinda working example
 [mtfurlan/arduino-sbus-test](https://github.com/mtfurlan/arduino-sbus-test)
+
+<img src="/images/frsky-communication-intro/working.gif" class="img-middle">
+
+I don't know how to use the frsky transmitter to *view* telemetry yet, but you
+can see that in the telemetry config menu it works.
